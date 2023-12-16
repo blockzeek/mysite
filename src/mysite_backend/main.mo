@@ -1,4 +1,5 @@
 import Iter "mo:base/Iter";
+import Array "mo:base/Array";
 
 actor {
   // 作业1：实现快排函数（顺序从小到大）quicksort : [var Int] -> ()
@@ -38,6 +39,13 @@ actor {
     };
 
     quicksortHelper(0, arr.size() - 1);
+  };
+
+  // 作业2：实现公共接口 public func qsort(arr: [Int]): async [Int]
+  public query func qsort(arr : [Int]) : async [Int] {
+    let mutableArr = Array.thaw<Int>(arr);
+    quicksort(mutableArr);
+    Array.freeze<Int>(mutableArr);
   };
 
   public query func greet(name : Text) : async Text {
